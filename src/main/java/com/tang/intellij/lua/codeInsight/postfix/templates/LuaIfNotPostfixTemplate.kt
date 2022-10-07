@@ -16,11 +16,12 @@
 
 package com.tang.intellij.lua.codeInsight.postfix.templates
 
+import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateProvider
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate
 import com.intellij.psi.PsiElement
 import com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selectorTopmost
 
-class LuaIfNotPostfixTemplate : StringBasedPostfixTemplate("if_not", "if not expr then end", selectorTopmost(), null) {
+class LuaIfNotPostfixTemplate(provider: PostfixTemplateProvider) : StringBasedPostfixTemplate("if_not", "if not expr then end", selectorTopmost(), provider) {
     override fun getTemplateString(psiElement: PsiElement): String? {
         return "if not \$expr$ then\n\$END$\nend"
     }

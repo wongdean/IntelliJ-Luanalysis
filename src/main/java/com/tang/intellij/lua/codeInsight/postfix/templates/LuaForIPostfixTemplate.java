@@ -16,6 +16,7 @@
 
 package com.tang.intellij.lua.codeInsight.postfix.templates;
 
+import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateProvider;
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate;
 import com.intellij.openapi.util.Conditions;
 import com.intellij.psi.PsiElement;
@@ -29,8 +30,8 @@ import static com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selector
  * Created by tangzx on 2017/2/5.
  */
 public class LuaForIPostfixTemplate extends StringBasedPostfixTemplate {
-    public LuaForIPostfixTemplate() {
-        super("for_i", "for i, v in ipairs(expr) do end", selectorTopmost(Conditions.alwaysTrue()));
+    public LuaForIPostfixTemplate(@NotNull PostfixTemplateProvider provider) {
+        super("for_i","for_i", "for i, v in ipairs(expr) do end", selectorTopmost(Conditions.alwaysTrue()), provider);
     }
 
     @Nullable

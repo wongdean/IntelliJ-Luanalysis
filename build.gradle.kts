@@ -5,13 +5,13 @@ fun properties(key: String) = project.findProperty(key).toString()
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.6.20"
+    id("org.jetbrains.kotlin.jvm") version "1.7.20"
 
-    id("org.jetbrains.intellij") version "1.7.0"
+    id("org.jetbrains.intellij") version "1.9.0"
 
     id("org.jetbrains.changelog") version "1.3.1"
 
-    id("de.undercouch.download") version "3.4.3"
+    id("de.undercouch.download") version "5.2.1"
 }
 
 group = properties("pluginGroup")
@@ -32,7 +32,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
@@ -69,12 +69,12 @@ sourceSets {
 
 tasks {
     withType<JavaCompile> {
-        sourceCompatibility = "11"
-        targetCompatibility = "11"
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.jvmTarget = "17"
         kotlinOptions.freeCompilerArgs = listOf(
             "-Xjvm-default=all",
             "-Xopt-in=kotlin.contracts.ExperimentalContracts"

@@ -34,10 +34,10 @@ import org.jetbrains.annotations.Nullable;
  */
 public class LuaMobStackFrame extends XStackFrame {
 
-    private String functionName;
-    private XSourcePosition position;
-    private LuaMobDebugProcess process;
-    private XValueChildrenList values = new XValueChildrenList();
+    private final String functionName;
+    private final XSourcePosition position;
+    private final LuaMobDebugProcess process;
+    private final XValueChildrenList values = new XValueChildrenList();
     private int stackLevel = 0;
 
     public LuaMobStackFrame(String functionName, XSourcePosition position, int _stackLevel, LuaMobDebugProcess debugProcess) {

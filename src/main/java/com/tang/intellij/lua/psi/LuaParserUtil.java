@@ -109,13 +109,13 @@ public class LuaParserUtil extends GeneratedParserUtilBase {
         return true;
     }
 
-    private static TokenSet END_SET = TokenSet.create(END);
-    private static TokenSet IF_SKIPS = TokenSet.create(THEN, ELSE, ELSEIF);
-    private static TokenSet REPEAT_TYPES = TokenSet.create(UNTIL);
-    private static TokenSet THEN_TYPES1 = TokenSet.create(ELSE, ELSEIF, END);
-    private static TokenSet THEN_SKIPS2 = TokenSet.create(ELSE, ELSEIF);
-    private static TokenSet BRACE_L_SET = TokenSet.create(LCURLY, LBRACK, LPAREN);
-    private static TokenSet BRACE_R_SET = TokenSet.create(RCURLY, RBRACK, RPAREN);
+    private static final TokenSet END_SET = TokenSet.create(END);
+    private static final TokenSet IF_SKIPS = TokenSet.create(THEN, ELSE, ELSEIF);
+    private static final TokenSet REPEAT_TYPES = TokenSet.create(UNTIL);
+    private static final TokenSet THEN_TYPES1 = TokenSet.create(ELSE, ELSEIF, END);
+    private static final TokenSet THEN_SKIPS2 = TokenSet.create(ELSE, ELSEIF);
+    private static final TokenSet BRACE_L_SET = TokenSet.create(LCURLY, LBRACK, LPAREN);
+    private static final TokenSet BRACE_R_SET = TokenSet.create(RCURLY, RBRACK, RPAREN);
 
     private static boolean matchStart(boolean advanced, PsiBuilder builder, int level, IElementType begin) {
         if (begin == DO) {

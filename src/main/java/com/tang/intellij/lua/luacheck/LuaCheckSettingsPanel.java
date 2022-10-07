@@ -43,7 +43,7 @@ public class LuaCheckSettingsPanel implements SearchableConfigurable, Configurab
     private TextFieldWithBrowseButton myLuaCheck;
     private HoverHyperlinkLabel luaCheckReleasePageLink;
     private HoverHyperlinkLabel commandLineOptionsLink;
-    private LuaCheckSettings settings = LuaCheckSettings.getInstance();
+    private final LuaCheckSettings settings = LuaCheckSettings.getInstance();
 
     public LuaCheckSettingsPanel() {
         myLuaCheck.setText(settings.getLuaCheck());
@@ -92,7 +92,7 @@ public class LuaCheckSettingsPanel implements SearchableConfigurable, Configurab
         commandLineOptionsLink.addHyperlinkListener(new HyperlinkAdapter() {
             @Override
             protected void hyperlinkActivated(HyperlinkEvent hyperlinkEvent) {
-                BrowserUtil.browse("http://luacheck.readthedocs.io/en/stable/cli.html#command-line-options");
+                BrowserUtil.browse("https://luacheck.readthedocs.io/en/stable/cli.html#command-line-options");
             }
         });
     }

@@ -17,17 +17,15 @@
 package com.tang.intellij.lua.errorreporting
 
 import com.intellij.AbstractBundle
-import com.intellij.CommonBundle
 import com.intellij.diagnostic.AbstractMessage
 import com.intellij.diagnostic.DiagnosticBundle
 import com.intellij.diagnostic.IdeErrorsDialog
-import com.intellij.diagnostic.ReportMessages
+import com.intellij.ide.BrowserUtil
 import com.intellij.ide.DataManager
-import com.intellij.ide.plugins.PluginManager
 import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.idea.IdeaLogger
+import com.intellij.notification.NotificationAction
 import com.intellij.notification.NotificationGroupManager
-import com.intellij.notification.NotificationListener
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.application.ApplicationInfo
@@ -121,8 +119,8 @@ private object AnonymousFeedback {
 			buildString {
 				val errorDescription = details.remove("error.description").orEmpty()
 				val stackTrace = details.remove("error.stacktrace")?.takeIf(String::isNotBlank) ?: "invalid stacktrace"
-				if (errorDescription.isNotEmpty()) append(errorDescription).appendln("\n\n----------------------\n")
-				for ((key, value) in details) append("- ").append(key).append(": ").appendln(value)
+				if (errorDescription.isNotEmpty()) append(errorDescription).appendLine("\n\n----------------------")
+				for ((key, value) in details) append("- ").append(key).append(": ").append(value)
 				if (includeStacktrace) appendln("\n```").appendln(stackTrace).appendln("```")
 			}
 }
@@ -158,9 +156,14 @@ private fun encrypt(value: String): String {
 class GitHubErrorReporter : ErrorReportSubmitter() {
 	override fun getReportActionText() = ErrorReportBundle.message("report.error.to.plugin.vendor")
 
-	override fun submit(events: Array<out IdeaLoggingEvent>?, additionalInfo: String?, parentComponent: Component, consumer: Consumer<in SubmittedReportInfo>): Boolean {
+	override fun submit(
+		events: Array<out IdeaLoggingEvent>,
+		additionalInfo: String?,
+		parentComponent: Component,
+		consumer: Consumer<in SubmittedReportInfo>
+	): Boolean {
 		// TODO improve
-		val event = events?.firstOrNull { it.throwable != null } ?: return false
+		val event = events.firstOrNull { it.throwable != null } ?: return false
 		return doSubmit(event, parentComponent, consumer, additionalInfo)
 	}
 
@@ -185,7 +188,6 @@ class GitHubErrorReporter : ErrorReportSubmitter() {
 		(event.data as? AbstractMessage)?.let { bean.attachments = it.includedAttachments }
 		val project = CommonDataKeys.PROJECT.getData(dataContext)
 		val reportValues = getKeyValuePairs(
-				project,
 				bean,
 				ApplicationInfo.getInstance() as ApplicationInfoEx,
 				ApplicationNamesInfo.getInstance())
@@ -204,11 +206,13 @@ class GitHubErrorReporter : ErrorReportSubmitter() {
 
 			val group = NotificationGroupManager.getInstance().getNotificationGroup("Error Report")
 			val title = DiagnosticBundle.message("error.report.title")
+			val actionText = DiagnosticBundle.message("error.new.notification.link")
 
 			val notification = if (reportInfo.status == SubmissionStatus.FAILED) {
-				group.createNotification(title, reportInfo.linkText, NotificationType.ERROR, null)
+				group.createNotification(title, reportInfo.linkText, NotificationType.ERROR)
 			} else {
-				group.createNotification(title, reportInfo.linkText, NotificationType.INFORMATION, NotificationListener.URL_OPENING_LISTENER)
+				val action = NotificationAction.createSimple(actionText) { BrowserUtil.browse(reportInfo.linkText) }
+                group.createNotification(title, reportInfo.linkText, NotificationType.INFORMATION).addAction(action)
 			}
 
 			notification.setImportant(false).notify(project)
@@ -248,7 +252,7 @@ private object ErrorReportBundle {
 	private val bundle: ResourceBundle by lazy { ResourceBundle.getBundle(BUNDLE) }
 
 	@JvmStatic
-	internal fun message(@PropertyKey(resourceBundle = BUNDLE) key: String, vararg params: Any) =
+	fun message(@PropertyKey(resourceBundle = BUNDLE) key: String, vararg params: Any) =
 		AbstractBundle.message(bundle, key, *params)
 }
 
@@ -266,7 +270,6 @@ private class AnonymousFeedbackTask(
  * Collects information about the running IDEA and the error
  */
 private fun getKeyValuePairs(
-		project: Project?,
 		error: GitHubErrorBean,
 		appInfo: ApplicationInfoEx,
 		namesInfo: ApplicationNamesInfo): MutableMap<String, String> {

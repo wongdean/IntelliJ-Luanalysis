@@ -51,7 +51,7 @@ public class _LuaDocLexer implements FlexLexer, LuaDocTypes {
    *                  at the beginning of a line
    * l is of the form l = 2*k, k a non negative integer
    */
-  private static final int ZZ_LEXSTATE[] = { 
+  private static final int[] ZZ_LEXSTATE = {
      0,  0,  1,  1,  2,  2,  3,  3,  4,  4,  5,  5,  6,  6,  7,  7, 
      8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 
     16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22
@@ -67,7 +67,7 @@ public class _LuaDocLexer implements FlexLexer, LuaDocTypes {
   }
 
   /* The ZZ_CMAP_Z table has 2176 entries */
-  static final char ZZ_CMAP_Z[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_Z = zzUnpackCMap(
     "\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1"+
     "\20\5\21\1\22\1\23\1\24\1\21\14\25\1\26\50\25\1\27\2\25\1\30\1\31\1\32\1\33"+
     "\25\25\1\34\20\21\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45\1\46\1\47\1"+
@@ -78,7 +78,7 @@ public class _LuaDocLexer implements FlexLexer, LuaDocTypes {
     "\1\25\1\107\u0582\21\1\110\u017f\21");
 
   /* The ZZ_CMAP_Y table has 4672 entries */
-  static final char ZZ_CMAP_Y[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_Y = zzUnpackCMap(
     "\1\0\1\1\1\0\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1"+
     "\17\3\0\1\20\1\21\1\22\1\23\2\24\1\25\3\24\1\25\71\24\1\26\1\24\1\27\1\30"+
     "\1\31\1\32\2\30\16\0\1\33\1\34\1\35\1\36\2\24\1\37\11\24\1\40\21\24\1\41\1"+
@@ -171,7 +171,7 @@ public class _LuaDocLexer implements FlexLexer, LuaDocTypes {
     "\0\20\30\36\0\2\30");
 
   /* The ZZ_CMAP_A table has 1904 entries */
-  static final char ZZ_CMAP_A[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_A = zzUnpackCMap(
     "\11\16\1\3\1\2\1\42\1\43\1\1\6\16\4\15\1\3\1\15\1\13\1\72\1\4\2\15\1\17\1"+
     "\66\1\67\1\15\1\24\1\61\1\7\1\6\1\15\1\26\11\21\1\63\1\15\1\62\1\11\1\64\1"+
     "\15\1\44\4\22\1\23\1\22\5\4\1\31\3\4\1\25\4\4\1\30\2\4\1\27\2\4\1\10\1\14"+
@@ -651,7 +651,7 @@ public class _LuaDocLexer implements FlexLexer, LuaDocTypes {
   }
 
   /** the input device */
-  private java.io.Reader zzReader;
+  private final java.io.Reader zzReader;
 
   /** the current state of the DFA */
   private int zzState;

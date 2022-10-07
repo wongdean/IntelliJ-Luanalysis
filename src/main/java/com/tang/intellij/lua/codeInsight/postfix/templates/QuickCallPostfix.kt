@@ -16,16 +16,17 @@
 
 package com.tang.intellij.lua.codeInsight.postfix.templates
 
+import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateProvider
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate
 import com.intellij.psi.PsiElement
 import com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selectorAllExpressionsWithCurrentOffset
 
-abstract class LuaCallPostfixTemplate(private val fn:String) : StringBasedPostfixTemplate(fn, "$fn(expr)", selectorAllExpressionsWithCurrentOffset(), null) {
+abstract class LuaCallPostfixTemplate(private val fn:String, provider: PostfixTemplateProvider) : StringBasedPostfixTemplate(fn, "$fn(expr)", selectorAllExpressionsWithCurrentOffset(), provider) {
 
     override fun getTemplateString(psiElement: PsiElement) = "$fn(\$expr\$)"
 
     override fun getElementToRemove(expr: PsiElement) = expr
 }
 
-class LuaToStringPostfixTemplate : LuaCallPostfixTemplate("tostring")
-class LuaToNumberPostfixTemplate : LuaCallPostfixTemplate("tonumber")
+class LuaToStringPostfixTemplate(provider: PostfixTemplateProvider) : LuaCallPostfixTemplate("tostring", provider)
+class LuaToNumberPostfixTemplate(provider: PostfixTemplateProvider) : LuaCallPostfixTemplate("tonumber", provider)

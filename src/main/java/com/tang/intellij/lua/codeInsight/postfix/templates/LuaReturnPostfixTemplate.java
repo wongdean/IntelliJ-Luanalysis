@@ -16,6 +16,7 @@
 
 package com.tang.intellij.lua.codeInsight.postfix.templates;
 
+import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateProvider;
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
@@ -28,8 +29,8 @@ import static com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selector
  * Created by tangzx on 2017/2/5.
  */
 public class LuaReturnPostfixTemplate extends StringBasedPostfixTemplate {
-    public LuaReturnPostfixTemplate() {
-        super("return", "return expr", selectorTopmost());
+    public LuaReturnPostfixTemplate(@NotNull PostfixTemplateProvider provider) {
+        super("return", "return expr", selectorTopmost(), provider);
     }
 
     @Nullable

@@ -78,7 +78,7 @@ public class EmptyBody extends EmptyBodyBase {
 
     private class Fix implements LocalQuickFix {
 
-        private String familyName;
+        private final String familyName;
 
         Fix(String familyName) {
             this.familyName = familyName;

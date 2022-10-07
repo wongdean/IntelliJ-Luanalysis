@@ -54,9 +54,9 @@ public abstract class LuaLookupElement extends LookupElement implements Comparab
     protected String myItemString;
     private String myLookupString;
     private String myTypeText;
-    private boolean isBold;
+    private final boolean isBold;
     private Icon myIcon;
-    private Icon myTypeIcon;
+    private final Icon myTypeIcon;
     private String myTailText;
     private InsertHandler<LookupElement> myHandler;
 

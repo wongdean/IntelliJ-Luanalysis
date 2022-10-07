@@ -22,8 +22,8 @@ package com.tang.intellij.lua.debugger;
  */
 public enum DebuggerType {
     Attach(1, "Attach Debugger(Not available)"), Mob(2, "Remote Debugger(Mobdebug)");
-    private int v;
-    private String desc;
+    private final int v;
+    private final String desc;
     DebuggerType(int v, String desc) {
         this.v = v;
         this.desc = desc;
