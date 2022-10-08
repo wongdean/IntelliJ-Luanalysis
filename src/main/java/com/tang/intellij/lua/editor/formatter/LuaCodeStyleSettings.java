@@ -26,9 +26,9 @@ import com.tang.intellij.lua.lang.LuaLanguage;
  */
 public class LuaCodeStyleSettings extends CustomCodeStyleSettings {
 
-    public boolean SPACE_AFTER_TABLE_FIELD_SEP = true;
+    public final boolean SPACE_AFTER_TABLE_FIELD_SEP = true;
 
-    public boolean ALIGN_TABLE_FIELD_ASSIGN = false;
+    public final boolean ALIGN_TABLE_FIELD_ASSIGN = false;
 
     public boolean KEEP_MULTIPLE_STATEMENTS_IN_ONE_LINE = false;
 

@@ -35,6 +35,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.ui.AutoScrollToSourceHandler
 import com.intellij.ui.OnePixelSplitter
 import com.intellij.ui.components.JBScrollPane
+import com.intellij.ui.treeStructure.Tree
 import com.intellij.usageView.UsageInfo
 import com.intellij.usages.impl.UsagePreviewPanel
 import com.intellij.util.EditSourceOnDoubleClickHandler
@@ -53,7 +54,7 @@ import javax.swing.tree.DefaultTreeModel
 class LuaCheckPanel(val project: Project) : SimpleToolWindowPanel(false), DataProvider {
     private val rootNode = DefaultMutableTreeNode()
     private val treeModel = DefaultTreeModel(rootNode)
-    private val tree: JTree = JTree(treeModel)
+    private val tree: JTree = Tree(treeModel)
     val builder:LuaCheckTreeBuilder = LuaCheckTreeBuilder(tree, treeModel, project)
     private val treeExpander = MyTreeExpander()
     private var myUsagePreviewPanel: UsagePreviewPanel? = null
@@ -119,7 +120,7 @@ class LuaCheckPanel(val project: Project) : SimpleToolWindowPanel(false), DataPr
 
         //toolbar
         val toolBarPanel = JPanel(GridLayout())
-        setToolbar(toolBarPanel)
+        toolbar = toolBarPanel
         val group = DefaultActionGroup()
         group.add(CommonActionsManager.getInstance().createExpandAllAction(treeExpander, this))
         group.add(CommonActionsManager.getInstance().createCollapseAllAction(treeExpander, this))

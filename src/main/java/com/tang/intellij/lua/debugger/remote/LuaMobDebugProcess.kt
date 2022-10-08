@@ -18,7 +18,6 @@ package com.tang.intellij.lua.debugger.remote
 
 import com.intellij.execution.ui.ConsoleViewContentType
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.util.Processor
 import com.intellij.xdebugger.XDebugSession
 import com.intellij.xdebugger.XSourcePosition
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint
@@ -33,6 +32,7 @@ import com.tang.intellij.lua.debugger.remote.commands.DebugCommand
 import com.tang.intellij.lua.debugger.remote.commands.GetStackCommand
 import com.tang.intellij.lua.psi.LuaFileUtil
 import java.net.BindException
+import java.util.*
 
 /**
 
@@ -90,11 +90,9 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
 
     private fun sendBreakpoint(sourcePosition: XSourcePosition) {
         val file = sourcePosition.file
-        val fileShortUrl: String? = getShortPath(file)
-        if (fileShortUrl != null) {
-            LuaFileUtil.getAllAvailablePathsForMob(fileShortUrl, file).forEach{ url ->
-                mobClient?.sendAddBreakpoint(url, sourcePosition.line + 1)
-            }
+        val fileShortUrl: String = getShortPath(file)
+        LuaFileUtil.getAllAvailablePathsForMob(fileShortUrl, file).forEach{ url ->
+            mobClient?.sendAddBreakpoint(url, sourcePosition.line + 1)
         }
     }
 
@@ -150,7 +148,7 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
         for (i in 1 until chunkParts.size) {
             val chunkPart = chunkParts[i]
             val pathPart = pathParts[i]
-            if (chunkPart.toLowerCase() != pathPart.toLowerCase()) {
+            if (chunkPart.lowercase(Locale.getDefault()) != pathPart.lowercase(Locale.getDefault())) {
                 break
             }
             neq = i
@@ -166,16 +164,18 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
 
     private fun sendAllBreakpoints() {
         mobClient?.addCommand("DELB * 0")
-        processBreakpoint(Processor { bp ->
+        processBreakpoint { bp ->
             bp.sourcePosition?.let { sendBreakpoint(it) }
             true
-        })
+        }
     }
 
     private fun getShortPath(file: VirtualFile): String {
         val myBaseDir = this.baseDir
         val path = file.canonicalPath
-        if (myBaseDir != null && path != null && path.toLowerCase().startsWith(myBaseDir.toLowerCase())) {
+        if (myBaseDir != null && path != null && path.lowercase(Locale.getDefault()).startsWith(myBaseDir.lowercase(
+                Locale.getDefault()
+            ))) {
             return path.substring(myBaseDir.length + 1)
         }
         return LuaFileUtil.getShortPath(session.project, file)

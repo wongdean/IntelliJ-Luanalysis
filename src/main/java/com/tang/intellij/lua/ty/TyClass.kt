@@ -158,7 +158,7 @@ private fun equalToShape(context: SearchContext, target: ITy, source: ITy): Bool
 
     var sourceMemberCount = 0
 
-    source.processMembers(context, true) { _, sourceMember ->
+    source.processMembers(context, true) { _, _ ->
         sourceMemberCount++ < targetMemberCount
     }
 

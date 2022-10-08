@@ -31,6 +31,8 @@ import com.tang.intellij.lua.project.LuaSettings
 import com.tang.intellij.lua.psi.*
 import com.tang.intellij.lua.search.SearchContext
 import java.lang.IllegalStateException
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
@@ -359,7 +361,7 @@ fun ITy.matchSignature(context: SearchContext, call: LuaCallExpr, processProblem
                         var contextualMessage = if (i >= args.size &&
                             (concreteArgTypes.size > args.size || (variadicArg != null && concreteArgTypes.size >= args.size))
                         ) {
-                            "Result ${i + 1}, ${problem.message.decapitalize()}"
+                            "Result ${i + 1}, ${problem.message.replaceFirstChar { it.lowercase(Locale.getDefault()) }}"
                         } else {
                             problem.message
                         }
@@ -420,7 +422,11 @@ fun ITy.matchSignature(context: SearchContext, call: LuaCallExpr, processProblem
             } else if (varargParamTy != null && variadicArg != null) {
                 if (processProblem != null) {
                     val contravariant = ProblemUtil.contravariantOf(context, varargParamTy, variadicArg.ty, 0, null, variadicArg.param) { problem ->
-                        val contextualMessage = "Variadic result, ${problem.message.decapitalize()}"
+                        val contextualMessage = "Variadic result, ${problem.message.replaceFirstChar { it1 ->
+                            it1.lowercase(
+                                Locale.getDefault()
+                            )
+                        }}"
                         signatureProblems?.add(Problem(null, problem.sourceElement, contextualMessage, problem.highlightType))
                     }
 

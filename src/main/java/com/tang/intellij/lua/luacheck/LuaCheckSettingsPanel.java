@@ -18,7 +18,6 @@ package com.tang.intellij.lua.luacheck;
 
 import com.intellij.ide.BrowserUtil;
 import com.intellij.openapi.options.Configurable;
-import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SearchableConfigurable;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.text.StringUtil;

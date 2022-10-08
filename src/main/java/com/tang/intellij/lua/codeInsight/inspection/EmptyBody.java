@@ -27,6 +27,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTreeUtil;
+import com.tang.intellij.lua.LuaBundle;
 import com.tang.intellij.lua.psi.*;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
@@ -43,22 +44,22 @@ public class EmptyBody extends EmptyBodyBase {
         return new LuaVisitor() {
             @Override
             public void visitForAStat(@NotNull LuaForAStat o) {
-                checkBlock(o, holder, LuaTypes.FOR, "Empty for body", "Remove empty for");
+                checkBlock(o, holder, LuaTypes.FOR, LuaBundle.message("inspection.empty_for"), LuaBundle.message("inspection.empty_for_remove"));
             }
 
             @Override
             public void visitForBStat(@NotNull LuaForBStat o) {
-                checkBlock(o, holder, LuaTypes.FOR, "Empty for body", "Remove empty for");
+                checkBlock(o, holder, LuaTypes.FOR, LuaBundle.message("inspection.empty_for"), LuaBundle.message("inspection.empty_for_remove"));
             }
 
             @Override
             public void visitDoStat(@NotNull LuaDoStat o) {
-                checkBlock(o, holder, LuaTypes.DO, "Empty do body", "Remove empty do");
+                checkBlock(o, holder, LuaTypes.DO, LuaBundle.message("inspection.empty_do"), LuaBundle.message("inspection.empty_do_remove"));
             }
 
             @Override
             public void visitWhileStat(@NotNull LuaWhileStat o) {
-                checkBlock(o, holder, LuaTypes.WHILE, "Empty while body", "Remove empty do");
+                checkBlock(o, holder, LuaTypes.WHILE, LuaBundle.message("inspection.empty_while"), LuaBundle.message("inspection.empty_while_remove"));
             }
         };
     }
@@ -76,7 +77,7 @@ public class EmptyBody extends EmptyBodyBase {
         }
     }
 
-    private class Fix implements LocalQuickFix {
+    private static class Fix implements LocalQuickFix {
 
         private final String familyName;
 

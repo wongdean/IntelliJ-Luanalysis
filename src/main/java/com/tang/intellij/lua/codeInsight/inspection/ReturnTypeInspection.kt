@@ -28,6 +28,7 @@ import com.tang.intellij.lua.psi.*
 import com.tang.intellij.lua.search.PsiSearchContext
 import com.tang.intellij.lua.search.SearchContext
 import com.tang.intellij.lua.ty.*
+import java.util.*
 
 class ReturnTypeInspection : StrictInspection() {
     override fun buildVisitor(myHolder: ProblemsHolder, isOnTheFly: Boolean, session: LocalInspectionToolSession): PsiElementVisitor {
@@ -83,7 +84,11 @@ class ReturnTypeInspection : StrictInspection() {
                             val targetMessage = problem.message
 
                             if (expressionTyLists.size > 1) {
-                                problem.message = "Result ${i + 1}, ${targetMessage.decapitalize()}"
+                                problem.message = "Result ${i + 1}, ${targetMessage.replaceFirstChar {
+                                    it.lowercase(
+                                        Locale.getDefault()
+                                    )
+                                }}"
                             }
 
                             problems.add(problem)

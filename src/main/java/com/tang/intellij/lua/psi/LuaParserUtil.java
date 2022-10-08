@@ -43,7 +43,7 @@ public class LuaParserUtil extends GeneratedParserUtilBase {
      *
      * local obj
      */
-    public static WhitespacesAndCommentsBinder MY_LEFT_COMMENT_BINDER = (list, b, tokenTextGetter) -> {
+    public static final WhitespacesAndCommentsBinder MY_LEFT_COMMENT_BINDER = (list, b, tokenTextGetter) -> {
         int lines = 0;
         for (int i = list.size() - 1; i >= 0; i--) {
             IElementType type = list.get(i);
@@ -60,7 +60,7 @@ public class LuaParserUtil extends GeneratedParserUtilBase {
         return list.size();
     };
 
-    public static WhitespacesAndCommentsBinder MY_RIGHT_COMMENT_BINDER = (list, b, tokenTextGetter) -> {
+    public static final WhitespacesAndCommentsBinder MY_RIGHT_COMMENT_BINDER = (list, b, tokenTextGetter) -> {
         for (int i = 0; i < list.size(); i++) {
             IElementType type = list.get(i);
             if (type == DOC_COMMENT) {
