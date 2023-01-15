@@ -18,6 +18,7 @@ package com.tang.intellij.lua.codeInsight.postfix.templates;
 
 import com.intellij.codeInsight.template.Template;
 import com.intellij.codeInsight.template.impl.TextExpression;
+import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateProvider;
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
@@ -30,8 +31,8 @@ import static com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selector
  * Created by TangZX on 2017/2/7.
  */
 public class LuaIncreasePostfixTemplate extends StringBasedPostfixTemplate {
-    public LuaIncreasePostfixTemplate() {
-        super("increase", "expr = expr + value", selectorTopmost());
+    public LuaIncreasePostfixTemplate(@NotNull PostfixTemplateProvider provider) {
+        super("increase", "expr = expr + value", selectorTopmost(), provider);
     }
 
     @Nullable

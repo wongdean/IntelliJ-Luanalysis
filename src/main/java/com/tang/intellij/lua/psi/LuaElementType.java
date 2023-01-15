@@ -45,7 +45,7 @@ public class LuaElementType extends IElementType {
         super(debugName, LuaLanguage.INSTANCE);
     }
 
-    public static CustomParsingType DOC_COMMENT = new CustomParsingType ("DOC_COMMENT", LuaLanguage.INSTANCE) {
+    public static final CustomParsingType DOC_COMMENT = new CustomParsingType ("DOC_COMMENT", LuaLanguage.INSTANCE) {
         @NotNull
         @Override
         public ASTNode parse(@NotNull CharSequence charSequence, @NotNull CharTable charTable) {
@@ -58,20 +58,20 @@ public class LuaElementType extends IElementType {
         }
     };
 
-    public static LuaStubElementType FUNC_DEF_STAT = new LuaFuncType();
-    public static LuaStubElementType CLASS_METHOD_DEF_STAT = new LuaClassMethodType();
-    public static LuaStubElementType CLASS_FIELD_DEF = new LuaDocTagFieldType();
-    public static LuaStubElementType TYPE_DEF = new LuaDocTagTypeType();
-    public static LuaStubElementType CLASS_DEF = new LuaDocTagClassType();
-    public static LuaStubElementType DOC_TABLE_DEF = new LuaDocTableDefType();
-    public static LuaStubElementType DOC_TABLE_FIELD_DEF = new LuaDocTableFieldType();
-    public static LuaStubElementType DOC_ALIAS = new LuaDocTagAliasType();
-    public static LuaStubElementType DOC_NOT = new LuaDocTagNotType();
-    public static LuaStubElementType TABLE = new LuaTableExprType();
-    public static LuaStubElementType TABLE_FIELD = new LuaTableFieldType();
-    public static LuaStubElementType INDEX = new LuaIndexExprType();
-    public static LuaStubElementType NAME_EXPR = new LuaNameExprType();
-    public static ILazyParseableElementType BLOCK = new LuaBlockElementType();
+    public static final LuaStubElementType FUNC_DEF_STAT = new LuaFuncType();
+    public static final LuaStubElementType CLASS_METHOD_DEF_STAT = new LuaClassMethodType();
+    public static final LuaStubElementType CLASS_FIELD_DEF = new LuaDocTagFieldType();
+    public static final LuaStubElementType TYPE_DEF = new LuaDocTagTypeType();
+    public static final LuaStubElementType CLASS_DEF = new LuaDocTagClassType();
+    public static final LuaStubElementType DOC_TABLE_DEF = new LuaDocTableDefType();
+    public static final LuaStubElementType DOC_TABLE_FIELD_DEF = new LuaDocTableFieldType();
+    public static final LuaStubElementType DOC_ALIAS = new LuaDocTagAliasType();
+    public static final LuaStubElementType DOC_NOT = new LuaDocTagNotType();
+    public static final LuaStubElementType TABLE = new LuaTableExprType();
+    public static final LuaStubElementType TABLE_FIELD = new LuaTableFieldType();
+    public static final LuaStubElementType INDEX = new LuaIndexExprType();
+    public static final LuaStubElementType NAME_EXPR = new LuaNameExprType();
+    public static final ILazyParseableElementType BLOCK = new LuaBlockElementType();
 
     static class LuaBlockElementType extends IReparseableElementType {
 
@@ -99,7 +99,7 @@ public class LuaElementType extends IElementType {
         }
     }
 
-    public static LuaLocalDefElementType LOCAL_DEF = new LuaLocalDefElementType();
-    public static LuaParamDefElementType PARAM_DEF = new LuaParamDefElementType();
-    public static LuaLiteralElementType LITERAL_EXPR = new LuaLiteralElementType();
+    public static final LuaLocalDefElementType LOCAL_DEF = new LuaLocalDefElementType();
+    public static final LuaParamDefElementType PARAM_DEF = new LuaParamDefElementType();
+    public static final LuaLiteralElementType LITERAL_EXPR = new LuaLiteralElementType();
 }

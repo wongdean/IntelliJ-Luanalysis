@@ -60,7 +60,7 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
     private EnvironmentVariablesTextFieldWithBrowseButton myEnvironments;
     private ComboBox<String> outputCharset;
     private JCheckBox showConsoleWindowCheckBox;
-    private Project project;
+    private final Project project;
 
     LuaAppSettingsEditor(Project project) {
         this.project = project;

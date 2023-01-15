@@ -22,31 +22,39 @@ import com.intellij.codeInsight.hints.InlayParameterHintsProvider
 import com.intellij.codeInsight.hints.Option
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
+import com.tang.intellij.lua.LuaBundle
 import com.tang.intellij.lua.psi.*
 import com.tang.intellij.lua.search.PsiSearchContext
 import com.tang.intellij.lua.search.SearchContext
 import com.tang.intellij.lua.ty.*
-import java.util.*
 
 /**
 
  * Created by TangZX on 2016/12/14.
  */
+@Suppress("UnstableApiUsage")
 class LuaParameterHintsProvider : InlayParameterHintsProvider {
     companion object {
-        private val ARGS_HINT = Option("lua.hints.show_args_type",
-                "Show argument name hints",
-                true)
-
-        private val LOCAL_VARIABLE_HINT = Option("lua.hints.show_local_var_type",
-                "Show local variable type hints",
-                false)
-        private val PARAMETER_TYPE_HINT = Option("lua.hints.show_parameter_type",
-                "Show parameter type hints",
-                false)
-        private val FUNCTION_HINT = Option("lua.hints.show_function_type",
-                "Show function return type hints",
-                false)
+        private val ARGS_HINT = Option(
+            "lua.hints.show_args_type",
+            { LuaBundle.message("ui.hints.show_args_type") },
+            true
+        )
+        private val LOCAL_VARIABLE_HINT = Option(
+            "lua.hints.show_local_var_type",
+            { LuaBundle.message("ui.hints.show_local_var_type") },
+            false
+        )
+        private val PARAMETER_TYPE_HINT = Option(
+            "lua.hints.show_parameter_type",
+            { LuaBundle.message("ui.hints.show_parameter_type") },
+            false
+        )
+        private val FUNCTION_HINT = Option(
+            "lua.hints.show_function_type",
+            { LuaBundle.message("ui.hints.show_function_type") },
+            false
+        )
         private const val TYPE_INFO_PREFIX = "@TYPE@"
         private var EXPR_HINT = arrayOf(LuaLiteralExpr::class.java,
                 LuaBinaryExpr::class.java,

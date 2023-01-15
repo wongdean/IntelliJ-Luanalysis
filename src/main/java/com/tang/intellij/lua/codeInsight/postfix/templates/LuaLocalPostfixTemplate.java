@@ -16,6 +16,7 @@
 
 package com.tang.intellij.lua.codeInsight.postfix.templates;
 
+import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateProvider;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateWithExpressionSelector;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiElement;
@@ -31,8 +32,8 @@ import static com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selector
  */
 public class LuaLocalPostfixTemplate extends PostfixTemplateWithExpressionSelector {
 
-    public LuaLocalPostfixTemplate() {
-        super("var", "local inst = expr", selectorAllExpressionsWithCurrentOffset());
+    public LuaLocalPostfixTemplate(@NotNull PostfixTemplateProvider provider) {
+        super("var","var","local inst = expr", selectorAllExpressionsWithCurrentOffset(), provider);
     }
 
     @Override

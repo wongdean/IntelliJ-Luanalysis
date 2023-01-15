@@ -30,7 +30,7 @@ import com.tang.intellij.lua.psi.LuaLocalFuncDefStat;
  */
 abstract class EmptyBodyBase extends LocalInspectionTool {
 
-    private static Class[] invalidClasses = new Class[] {
+    private static final Class[] invalidClasses = new Class[] {
             PsiWhiteSpace.class,
             PsiComment.class,
             LuaLocalFuncDefStat.class,

@@ -22,6 +22,7 @@ import com.tang.intellij.lua.comment.psi.*
 import com.tang.intellij.lua.comment.psi.api.LuaComment
 import com.tang.intellij.lua.search.SearchContext
 import com.tang.intellij.lua.ty.*
+import java.util.*
 
 inline fun StringBuilder.wrap(prefix: String, postfix: String, crossinline body: () -> Unit) {
     this.append(prefix)

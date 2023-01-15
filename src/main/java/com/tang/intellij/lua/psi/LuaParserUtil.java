@@ -43,7 +43,7 @@ public class LuaParserUtil extends GeneratedParserUtilBase {
      *
      * local obj
      */
-    public static WhitespacesAndCommentsBinder MY_LEFT_COMMENT_BINDER = (list, b, tokenTextGetter) -> {
+    public static final WhitespacesAndCommentsBinder MY_LEFT_COMMENT_BINDER = (list, b, tokenTextGetter) -> {
         int lines = 0;
         for (int i = list.size() - 1; i >= 0; i--) {
             IElementType type = list.get(i);
@@ -60,7 +60,7 @@ public class LuaParserUtil extends GeneratedParserUtilBase {
         return list.size();
     };
 
-    public static WhitespacesAndCommentsBinder MY_RIGHT_COMMENT_BINDER = (list, b, tokenTextGetter) -> {
+    public static final WhitespacesAndCommentsBinder MY_RIGHT_COMMENT_BINDER = (list, b, tokenTextGetter) -> {
         for (int i = 0; i < list.size(); i++) {
             IElementType type = list.get(i);
             if (type == DOC_COMMENT) {
@@ -109,13 +109,13 @@ public class LuaParserUtil extends GeneratedParserUtilBase {
         return true;
     }
 
-    private static TokenSet END_SET = TokenSet.create(END);
-    private static TokenSet IF_SKIPS = TokenSet.create(THEN, ELSE, ELSEIF);
-    private static TokenSet REPEAT_TYPES = TokenSet.create(UNTIL);
-    private static TokenSet THEN_TYPES1 = TokenSet.create(ELSE, ELSEIF, END);
-    private static TokenSet THEN_SKIPS2 = TokenSet.create(ELSE, ELSEIF);
-    private static TokenSet BRACE_L_SET = TokenSet.create(LCURLY, LBRACK, LPAREN);
-    private static TokenSet BRACE_R_SET = TokenSet.create(RCURLY, RBRACK, RPAREN);
+    private static final TokenSet END_SET = TokenSet.create(END);
+    private static final TokenSet IF_SKIPS = TokenSet.create(THEN, ELSE, ELSEIF);
+    private static final TokenSet REPEAT_TYPES = TokenSet.create(UNTIL);
+    private static final TokenSet THEN_TYPES1 = TokenSet.create(ELSE, ELSEIF, END);
+    private static final TokenSet THEN_SKIPS2 = TokenSet.create(ELSE, ELSEIF);
+    private static final TokenSet BRACE_L_SET = TokenSet.create(LCURLY, LBRACK, LPAREN);
+    private static final TokenSet BRACE_R_SET = TokenSet.create(RCURLY, RBRACK, RPAREN);
 
     private static boolean matchStart(boolean advanced, PsiBuilder builder, int level, IElementType begin) {
         if (begin == DO) {

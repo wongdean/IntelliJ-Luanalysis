@@ -24,4 +24,18 @@
     ]]></description>
     <xi:include href="luanalysis-core.xml" xpointer="xpointer(/idea-plugin/*)"/>
     <depends optional="true" config-file="luanalysis-project.xml">com.intellij.java</depends>
+    <actions>
+        <group id="lua.ProjectViewPopupMenu">
+            <separator/>
+            <add-to-group group-id="ProjectViewPopupMenu"/>
+            <action class="com.tang.intellij.lua.actions.MarkLuaSourceRootAction"
+                    text="Mark as Lua Source Root"
+                    id="lua.project.markSourceRoot"/>
+
+            <action class="com.tang.intellij.lua.actions.UnmarkLuaSourceRootAction"
+                    text="Unmark as Lua Source Root"
+                    id="lua.project.unmarkSourceRoot"/>
+            <reference ref="lua.LuaCheck"/>
+        </group>
+    </actions>
 </idea-plugin>

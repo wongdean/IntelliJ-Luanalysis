@@ -56,7 +56,7 @@ public class _LuaLexer implements FlexLexer {
    *                  at the beginning of a line
    * l is of the form l = 2*k, k a non negative integer
    */
-  private static final int ZZ_LEXSTATE[] = {
+  private static final int[] ZZ_LEXSTATE = {
      0,  0,  1,  1,  2,  2,  3,  3,  4,  4,  5,  5,  4, 4
   };
 
@@ -70,15 +70,15 @@ public class _LuaLexer implements FlexLexer {
   }
 
   /* The ZZ_CMAP_Z table has 136 entries */
-  static final char ZZ_CMAP_Z[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_Z = zzUnpackCMap(
     "\1\0\1\100\6\200\200\300");
 
   /* The ZZ_CMAP_Y table has 256 entries */
-  static final char ZZ_CMAP_Y[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_Y = zzUnpackCMap(
     "\1\0\1\1\53\2\1\3\22\2\1\4\37\2\1\3\137\2\100\5");
 
   /* The ZZ_CMAP_A table has 768 entries */
-  static final char ZZ_CMAP_A[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_A = zzUnpackCMap(
     "\11\36\1\3\1\2\1\0\1\3\1\1\22\36\1\3\1\56\1\34\1\55\1\36\1\63\1\73\1\40\1"+
     "\65\1\66\1\62\1\10\1\67\1\17\1\16\1\64\1\12\11\5\1\71\1\70\1\60\1\32\1\57"+
     "\2\36\4\6\1\7\1\6\5\37\1\15\3\37\1\11\4\37\1\14\2\37\1\13\2\37\1\31\1\35\1"+
@@ -394,7 +394,7 @@ public class _LuaLexer implements FlexLexer {
   }
 
   /** the input device */
-  private java.io.Reader zzReader;
+  private final java.io.Reader zzReader;
 
   /** the current state of the DFA */
   private int zzState;

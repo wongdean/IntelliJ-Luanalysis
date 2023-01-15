@@ -29,7 +29,7 @@ import java.awt.*;
  * Created by tangzx on 2017/2/11.
  */
 public class CreateFieldFromParameterDialog extends DialogWrapper {
-    private String fieldName;
+    private final String fieldName;
     private JTextField nameField;
     private JCheckBox docCheckbox;
 

@@ -32,25 +32,25 @@ import java.util.Set;
  */
 public class LuaPostfixTemplateProvider implements PostfixTemplateProvider {
 
-    private Set<PostfixTemplate> templates;
+    private final Set<PostfixTemplate> templates;
 
     public LuaPostfixTemplateProvider() {
         templates = ContainerUtil.newHashSet(
-                new LuaLocalPostfixTemplate(),
-                new LuaForAPostfixTemplate(),
-                new LuaForIPostfixTemplate(),
-                new LuaForPPostfixTemplate(),
-                new LuaIfPostfixTemplate(),
-                new LuaIfNotPostfixTemplate(),
-                new LuaCheckNilPostfixTemplate(),
-                new LuaCheckIfNotNilPostfixTemplate(),
-                new LuaReturnPostfixTemplate(),
-                new LuaPrintPostfixTemplate(),
-                new LuaIncreasePostfixTemplate(),
-                new LuaDecreasePostfixTemplate(),
-                new LuaParPostfixTemplate(),
-                new LuaToNumberPostfixTemplate(),
-                new LuaToStringPostfixTemplate()
+                new LuaLocalPostfixTemplate(this),
+                new LuaForAPostfixTemplate(this),
+                new LuaForIPostfixTemplate(this),
+                new LuaForPPostfixTemplate(this),
+                new LuaIfPostfixTemplate(this),
+                new LuaIfNotPostfixTemplate(this),
+                new LuaCheckNilPostfixTemplate(this),
+                new LuaCheckIfNotNilPostfixTemplate(this),
+                new LuaReturnPostfixTemplate(this),
+                new LuaPrintPostfixTemplate(this),
+                new LuaIncreasePostfixTemplate(this),
+                new LuaDecreasePostfixTemplate(this),
+                new LuaParPostfixTemplate(this),
+                new LuaToNumberPostfixTemplate(this),
+                new LuaToStringPostfixTemplate(this)
         );
     }
 

@@ -31,8 +31,8 @@ import org.luaj.vm2.lib.jse.JsePlatform;
  * Created by tangzx on 2016/12/31.
  */
 public class LuaMobDebuggerEvaluator extends LuaDebuggerEvaluator {
-    private LuaMobDebugProcess process;
-    private LuaMobStackFrame stackFrame;
+    private final LuaMobDebugProcess process;
+    private final LuaMobStackFrame stackFrame;
 
     public LuaMobDebuggerEvaluator(@NotNull LuaMobDebugProcess process, @NotNull LuaMobStackFrame stackFrame) {
         this.process = process;

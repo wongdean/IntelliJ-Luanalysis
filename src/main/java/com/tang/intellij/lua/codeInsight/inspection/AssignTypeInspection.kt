@@ -25,6 +25,7 @@ import com.tang.intellij.lua.project.LuaSettings
 import com.tang.intellij.lua.psi.*
 import com.tang.intellij.lua.search.PsiSearchContext
 import com.tang.intellij.lua.ty.*
+import java.util.*
 
 class AssignTypeInspection : StrictInspection() {
     override fun buildVisitor(myHolder: ProblemsHolder, isOnTheFly: Boolean, session: LocalInspectionToolSession): PsiElementVisitor =
@@ -201,7 +202,11 @@ class AssignTypeInspection : StrictInspection() {
                                 inspectAssignee(context, assignee, value, resolvedValue, varianceFlags, inspectionTargetElement, expression) { problem ->
                                     val sourceElement = problem.sourceElement
                                     val targetElement = problem.targetElement
-                                    val sourceMessage = if (assignees.size > 1 && values.size > 1) "Result ${valueIndex + 1}, ${problem.message.decapitalize()}" else problem.message
+                                    val sourceMessage = if (assignees.size > 1 && values.size > 1) "Result ${valueIndex + 1}, ${problem.message.replaceFirstChar {
+                                        it.lowercase(
+                                            Locale.getDefault()
+                                        )
+                                    }}" else problem.message
                                     val highlightType = problem.highlightType ?: ProblemHighlightType.GENERIC_ERROR_OR_WARNING
 
                                     myHolder.registerProblem(sourceElement, sourceMessage, highlightType)
@@ -230,7 +235,7 @@ class AssignTypeInspection : StrictInspection() {
                                     val targetElement = problem.targetElement
                                     val sourceMessage = if (assignees.size > 1) {
                                         val resultIndex = assigneeIndex - lastExpressionFirstAssigneeIndex + 1
-                                        "Result ${resultIndex}, ${problem.message.decapitalize()}"
+                                        "Result ${resultIndex}, ${problem.message.replaceFirstChar { it.lowercase(Locale.getDefault()) }}"
                                     } else {
                                         problem.message
                                     }

@@ -18,7 +18,6 @@ package com.tang.intellij.lua.luacheck;
 
 import com.intellij.ide.BrowserUtil;
 import com.intellij.openapi.options.Configurable;
-import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SearchableConfigurable;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.text.StringUtil;
@@ -43,7 +42,7 @@ public class LuaCheckSettingsPanel implements SearchableConfigurable, Configurab
     private TextFieldWithBrowseButton myLuaCheck;
     private HoverHyperlinkLabel luaCheckReleasePageLink;
     private HoverHyperlinkLabel commandLineOptionsLink;
-    private LuaCheckSettings settings = LuaCheckSettings.getInstance();
+    private final LuaCheckSettings settings = LuaCheckSettings.getInstance();
 
     public LuaCheckSettingsPanel() {
         myLuaCheck.setText(settings.getLuaCheck());
@@ -92,7 +91,7 @@ public class LuaCheckSettingsPanel implements SearchableConfigurable, Configurab
         commandLineOptionsLink.addHyperlinkListener(new HyperlinkAdapter() {
             @Override
             protected void hyperlinkActivated(HyperlinkEvent hyperlinkEvent) {
-                BrowserUtil.browse("http://luacheck.readthedocs.io/en/stable/cli.html#command-line-options");
+                BrowserUtil.browse("https://luacheck.readthedocs.io/en/stable/cli.html#command-line-options");
             }
         });
     }

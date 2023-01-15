@@ -42,8 +42,6 @@
         <!--CreateFromTemplate-->
         <createFromTemplateHandler implementation="com.tang.intellij.lua.actions.LuaCreateFromTemplateHandler"/>
 
-        <virtualFileSystem implementationClass="com.tang.intellij.lua.debugger.attach.vfs.MemoryFileSystem" key="lua-dummy"/>
-
         <!--module and library-->
         <sdkType implementation="com.tang.intellij.lua.project.LuaSdkType"/>
         <library.type implementation="com.tang.intellij.lua.project.LuaLibraryType"/>
@@ -111,7 +109,7 @@
         <!--editor handlers-->
         <enterHandlerDelegate implementation="com.tang.intellij.lua.editor.LuaEnterAfterUnmatchedBraceHandler" />
         <enterHandlerDelegate implementation="com.tang.intellij.lua.editor.LuaEnterInDocHandler"/>
-        <enterHandlerDelegate implementation="com.tang.intellij.lua.editor.LuaEnterBetweenBracesHandler"/>
+        <enterBetweenBracesDelegate language="Lua" implementationClass="com.tang.intellij.lua.editor.LuaEnterBetweenBracesHandler"/>
         <enterHandlerDelegate implementation="com.tang.intellij.lua.editor.LuaEnterBetweenRangeBlockHandler"/>
         <backspaceHandlerDelegate implementation="com.tang.intellij.lua.codeInsight.LuaBackspaceHandlerDelegate"/>
         <typedHandler implementation="com.tang.intellij.lua.editor.LuaTypedHandler"/>
